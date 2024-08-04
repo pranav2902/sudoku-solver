@@ -61,6 +61,20 @@ if __name__ == "__main__":
     [3, 0, 5, 2, 0, 0, 1, 7, 9]
 ])
 
-    so = Solver(arr=arr_easy)
-    so.solve()
+    def test_solver_with_easy():
+        arr_easy = np.array([
+            [5, 3, 4, 6, 7, 0, 9, 0, 2],
+            [0, 7, 0, 1, 9, 5, 3, 4, 0],
+            [1, 9, 0, 3, 4, 2, 5, 0, 7],
+            [8, 5, 9, 0, 0, 1, 4, 2, 3],
+            [4, 2, 0, 8, 5, 0, 7, 9, 1],
+            [7, 1, 3, 9, 2, 4, 8, 5, 6],
+            [9, 0, 1, 5, 3, 7, 2, 0, 4],
+            [0, 8, 7, 4, 1, 9, 6, 3, 0],
+            [3, 0, 5, 2, 0, 0, 1, 7, 9]
+        ])
+        solver = Solver(arr=arr_easy)
+        solver.solve()
+
+    test_solver_with_easy()
 
