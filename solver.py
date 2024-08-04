@@ -10,21 +10,23 @@ class Solver():
         self.board = SudokuBoard(arr)
 
     def solve(self):
+        print("Current board state:")
         self.board.vis_board(arr=self.board.values_numpy)
         pos = self.board.find_next_empty_cell()
-        print(pos)
-        x,y = pos
+        print(f"Next empty cell: {pos}")
+        x, y = pos
         if x == -1 and y == -1:
             print("Solved board below: ")
             self.board.vis_board(arr=self.board.values_numpy)
+            return True
         else:
-            self.board = self.board.save_board_state()
+            self.board.save_board_state()
             for i in range(1, 10):
-                if not self.board.add_number_to_board(i, pos):
+                if self.board.add_number_to_board(i, pos):
+                    if self.solve():
+                        return True
                     self.board.remove_pos_from_board(pos)
-                    continue
-                else:
-                    self.solve()
+            return False
 
 
 
