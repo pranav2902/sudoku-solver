@@ -8,11 +8,14 @@ class Solver():
 
     def __init__(self, arr: np.array):
         self.board = SudokuBoard(arr)
+        print("Initialized Solver with board:")
+        self.board.vis_board(arr=self.board.values_numpy)
 
     def solve(self):
         print("Current board state:")
         self.board.vis_board(arr=self.board.values_numpy)
         pos = self.board.find_next_empty_cell()
+        print(f"Trying to solve for position: {pos}")
         print(f"Next empty cell: {pos}")
         x, y = pos
         if x == -1 and y == -1:
@@ -22,10 +25,13 @@ class Solver():
         else:
             self.board.save_board_state()
             for i in range(1, 10):
+                print(f"Trying number {i} at position {pos}")
                 if self.board.add_number_to_board(i, pos):
+                    print(f"Number {i} fits at position {pos}")
                     if self.solve():
                         return True
                     self.board.remove_pos_from_board(pos)
+            print(f"Backtracking from position {pos}")
             return False
 
 
